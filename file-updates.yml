@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: create empty file
+    file:
+      path: "/tmp.1.txt"
+      state: touch
+  - name: line insert
+    lineinfile:
+      path: "/tmp.1.txt"
+      line: This test has been added by custom script
+      insertbefore: BOF

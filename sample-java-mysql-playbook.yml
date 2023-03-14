@@ -1,13 +1,14 @@
 ---
- - hosts: test1
-   sudo: yes
+ - hosts: test
+   become: true
    name: install play1 with java
-   task:
-    - name: install Java
-      apt: java state=latest
+   tasks:
+     - name: install Java on Ubuntu OS
+       script: openjdk-install.sh
 
- - hosts: prod1
-   sudo: yes
+ - hosts: prod
+   become: true
    name: install play2 with mysql server
-   tasks: install mysql-server
-   apt: mysql-server state=latest
+   tasks: 
+     - name: Install MySQL server on Ubuntu OS
+       apt: name=mysql-server state=latest
